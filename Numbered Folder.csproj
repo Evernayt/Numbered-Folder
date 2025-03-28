@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Icons\icon.ico</ApplicationIcon>
+    <Authors>Evernayt</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,11 +49,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Icons\FolderPlus.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
