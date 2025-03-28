@@ -1,0 +1,125 @@
+﻿<Window x:Class="Numbered_Folder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Numbered_Folder"
+        mc:Ignorable="d"
+        Title="Numbered Folder"
+        MinHeight="300"
+        MinWidth="400"
+        Height="300"
+        Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="SuggestionsBtn" Grid.Row="0"
+                    Padding="10 5" Background="White"
+                    BorderBrush="Gainsboro" HorizontalAlignment="Left"
+                    Click="SuggestionsBtn_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/Flare.png" Width="18"
+                           Height="18" Margin="0 0 5 0"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock VerticalAlignment="Center">Подсказки</TextBlock>
+                </StackPanel>
+            </Button>
+            
+            <Separator Grid.Row="1" Margin="0 5" Background="Gainsboro"/>
+
+            <StackPanel Grid.Row="2" Margin="0 0 0 10"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="WarningImg" Source="Icons/Warning.png"
+                       Height="100" Width="100"
+                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                <Image x:Name="SuccessImg" Source="Icons/Success.png"
+                       Height="100" Width="100"
+                       RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+                <TextBlock x:Name="InfoTbk" TextAlignment="Center"
+                           Foreground="DimGray" Margin="0 5">
+                    Контекстное меню не создано
+                </TextBlock>
+                <Button x:Name="AddBtn" Padding="10 5"
+                        Background="White" BorderBrush="Gainsboro"
+                        Click="AddBtn_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Icons/Add.png" Width="18"
+                               Height="18" Margin="0 0 5 0"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock VerticalAlignment="Center">Добавить контекстное меню</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="DeleteBtn" Padding="10 5"
+                        Background="White" BorderBrush="Gainsboro"
+                        Visibility="Collapsed"
+                        Click="DeleteBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Icons/Remove.png" Width="18"
+                               Height="18" Margin="0 0 5 0"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock VerticalAlignment="Center">Удалить контекстное меню</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="SuggestionsGrid" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="BackBtn" Grid.Row="0"
+                        Padding="10 5" Background="White"
+                        BorderBrush="Gainsboro" HorizontalAlignment="Left"
+                        Margin="0 0 5 0"
+                        Click="BacksBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Icons/Back.png" Width="18"
+                               Height="18" Margin="0 0 5 0"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock VerticalAlignment="Center">Назад</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="SaveBtn" Grid.Row="0"
+                        Padding="10 5" Background="White"
+                        BorderBrush="Gainsboro" HorizontalAlignment="Left"
+                        Click="SaveBtn_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Icons/Save.png" Width="18"
+                               Height="18" Margin="0 0 5 0"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <TextBlock VerticalAlignment="Center">Сохранить</TextBlock>
+                    </StackPanel>
+                </Button>
+                <TextBlock x:Name="SavedTbk" VerticalAlignment="Center"
+                           Margin="15 0 0 0" Foreground="Gray"
+                           Visibility="Collapsed">
+                    Сохранено
+                </TextBlock>
+            </StackPanel>
+
+            <Separator Grid.Row="1" Margin="0 5" Background="Gainsboro"/>
+
+            <StackPanel Grid.Row="2" Margin="0 0 0 5">
+                <TextBlock Text="$название папки" Foreground="DimGray" FontSize="10"/>
+                <TextBlock Text="1#подсказка — (индекс подсказки пишется перед #)" Foreground="DimGray" FontSize="10"/>
+            </StackPanel>
+
+            <TextBox x:Name="FolderSuggestionTbx" Grid.Row="3"
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     PreviewTextInput="FolderSuggestionTbx_PreviewTextInput"
+                     DataObject.Pasting="FolderSuggestionTbx_Pasting"/>
+        </Grid>
+    </Grid>
+</Window>
