@@ -15,7 +15,7 @@ namespace Numbered_Folder
 
         private readonly string? _appPath = Environment.ProcessPath;
         private string _folderPath = "";
-        private int _folderCounts = 1;
+        private int _foldersCount = 1;
         private Dictionary<int, List<string>> _suggestionRules = [];
         private bool _isNavigatingWithArrows = false;
 
@@ -28,7 +28,7 @@ namespace Numbered_Folder
             string folderName = Path.GetFileName(folderPath);
             Title = $"Создание папки в {folderName}";
 
-            _folderCounts = Directory.GetDirectories(folderPath).Length;
+            _foldersCount = Directory.GetDirectories(folderPath).Length + 1;
             UpdateFullFolderName();
 
             FolderNameTbx.Focus();
@@ -39,7 +39,7 @@ namespace Numbered_Folder
         private void UpdateFullFolderName()
         {
             string folderName = FolderNameTbx.Text;
-            FullFolderNameTbk.Text = $"{_folderCounts}. {(string.IsNullOrWhiteSpace(folderName) ? INITIAL_FOLDER_NAME : folderName)}";
+            FullFolderNameTbk.Text = $"{_foldersCount}. {(string.IsNullOrWhiteSpace(folderName) ? INITIAL_FOLDER_NAME : folderName)}";
         }
 
         private async void LoadFolderSuggestions(string folderName)
@@ -117,9 +117,9 @@ namespace Numbered_Folder
 
         private void CreateFolder()
         {
-            int folderCount = Directory.GetDirectories(_folderPath).Length;
+            _foldersCount = Directory.GetDirectories(_folderPath).Length + 1;
             string folderName = FolderNameTbx.Text;
-            string fullFolderName = $"{folderCount}. {(string.IsNullOrWhiteSpace(folderName) ? INITIAL_FOLDER_NAME : folderName)}";
+            string fullFolderName = $"{_foldersCount}. {(string.IsNullOrWhiteSpace(folderName) ? INITIAL_FOLDER_NAME : folderName)}";
             Directory.CreateDirectory(Path.Combine(_folderPath, fullFolderName));
         }
 
